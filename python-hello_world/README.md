@@ -1,0 +1,1 @@
+This directory contains scripts on the Python - Hello, World module
