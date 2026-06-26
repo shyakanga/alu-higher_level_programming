@@ -1,0 +1,1 @@
+This directory contains code about python if/else, loops, functions statements
