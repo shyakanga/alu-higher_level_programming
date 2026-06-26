@@ -10,5 +10,5 @@ if int(ls_digit) > 5:
 elif int(ls_digit) == 0:
     ls_comp = "and is 0"
 elif int(ls_digit) < 6 and int(ls_digit) != 0:
-    ls_comp = "and is less than 6 and not 0"    
+    ls_comp = "and is less than 6 and not 0"
 print(f"Last digit of {number} is {ls_digit} {ls_comp}")
