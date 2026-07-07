@@ -1,0 +1,1 @@
+This drectory contains code about Python - Data Structures: Lists, Tuples
