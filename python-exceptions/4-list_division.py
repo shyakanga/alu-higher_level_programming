@@ -8,7 +8,8 @@ def list_division(my_list_1, my_list_2, list_length):
                 raise IndexError
             val1 = my_list_1[i]
             val2 = my_list_2[i]
-            if not isinstance(val1, (int, float)) or not isinstance(val2, (int, float)):
+            if (not isinstance(val1, (int, float)) or
+                    not isinstance(val2, (int, float))):
                 raise TypeError
             result = val1 / val2
         except IndexError:
@@ -19,4 +20,5 @@ def list_division(my_list_1, my_list_2, list_length):
             print("division by 0")
         finally:
             new_list.append(result)
+
     return new_list
