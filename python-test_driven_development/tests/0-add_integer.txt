@@ -1,13 +1,11 @@
-The ``0-add_integer`` module
-============================
+===========================
+How to Use 0-add_integer.py
+===========================
 
-Using ``add_integer``
----------------------
+This library defines a function ``add_integer(a, b=98)``.
 
-Importing the function from module:
+Standard additions:
     >>> add_integer = __import__('0-add_integer').add_integer
-
-Testing standard additions:
     >>> add_integer(1, 2)
     3
     >>> add_integer(100, -2)
@@ -17,13 +15,7 @@ Testing standard additions:
     >>> add_integer(100.3, -2)
     98
 
-Testing float casting:
-    >>> add_integer(2.5, 3.5)
-    5
-    >>> add_integer(-2.7, -3.8)
-    -5
-
-Testing type errors:
+Type checks:
     >>> add_integer(4, "School")
     Traceback (most recent call last):
         ...
@@ -33,3 +25,24 @@ Testing type errors:
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
+
+Infinity and NaN checks:
+    >>> add_integer(float('inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(1, float('inf'))
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(1, float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
