@@ -1,27 +1,60 @@
-The ``4-print_square`` module
-=============================
+===========================
+How to Use 4-print_square.py
+===========================
 
-Using ``print_square``
-----------------------
+This module defines the function ``print_square(size)``.
 
-Importing the function from module:
+Importing the function:
     >>> print_square = __import__('4-print_square').print_square
 
-Testing valid squares:
+Standard squares:
     >>> print_square(4)
     ####
     ####
     ####
     ####
+
+    >>> print_square(1)
+    #
+
     >>> print_square(0)
 
-Testing errors:
+ValueError when size is less than 0:
     >>> print_square(-1)
     Traceback (most recent call last):
         ...
     ValueError: size must be >= 0
 
+TypeError when size is a float and less than 0:
+    >>> print_square(-1.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+TypeError when size is a positive float:
     >>> print_square(2.5)
     Traceback (most recent call last):
         ...
     TypeError: size must be an integer
+
+TypeError for non-integer types:
+    >>> print_square("4")
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+    >>> print_square(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+    >>> print_square(True)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+TypeError when missing required argument:
+    >>> print_square()
+    Traceback (most recent call last):
+        ...
+    TypeError: print_square() missing 1 required positional argument: 'size'
