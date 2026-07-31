@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 """Module that defines a Square class using property getters and setters.
 
 This module centralizes size validation logic using Python properties.
