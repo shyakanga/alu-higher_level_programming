@@ -6,13 +6,13 @@ import numpy as np
 
 
 def lazy_matrix_mul(m_a, m_b):
-    """Multiplies 2 matrices by using NumPy.
+    """Multiplies 2 matrices by using the module NumPy.
 
     Args:
         m_a: First matrix.
         m_b: Second matrix.
 
     Returns:
-        The matrix product of m_a and m_b.
+        The matrix product of m_a and m_b as a NumPy ndarray.
     """
     return np.matmul(m_a, m_b)
