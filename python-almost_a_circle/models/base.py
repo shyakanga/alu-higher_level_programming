@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines the Base class, the root of the hierarchy for this project."""
 import json
+import csv
 
 
 class Base:
@@ -9,7 +10,7 @@ class Base:
     This class is the "base" of all other classes in this project.
     It manages the id attribute of every instance, and provides
     class/static methods to serialize and deserialize instances
-    to and from JSON, and to and from files on disk.
+    to and from JSON or CSV, and to and from files on disk.
     """
 
     __nb_objects = 0
@@ -109,6 +110,57 @@ class Base:
         try:
             with open(filename, "r") as jsonfile:
                 list_dicts = cls.from_json_string(jsonfile.read())
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Write the CSV representation of list_objs to a file.
+
+        The filename used is <Class name>.csv, and it is
+        overwritten if it already exists. Each row holds an
+        instance's to_dictionary() values in order, so the format
+        is <id>,<width>,<height>,<x>,<y> for Rectangle and
+        <id>,<size>,<x>,<y> for Square.
+
+        Args:
+            list_objs (list): A list of instances that inherit
+                from Base.
+        """
+        filename = cls.__name__ + ".csv"
+        if list_objs is None:
+            list_objs = []
+        with open(filename, "w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            for obj in list_objs:
+                writer.writerow(list(obj.to_dictionary().values()))
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Return a list of instances loaded from a CSV file.
+
+        The filename used is <Class name>.csv. Rows are mapped
+        back to dictionaries using the field order
+        id,width,height,x,y for Rectangle and id,size,x,y for
+        Square, then rebuilt into instances via create().
+
+        Returns:
+            list: A list of instances of cls, or an empty list if
+                the file doesn't exist.
+        """
+        filename = cls.__name__ + ".csv"
+        if cls.__name__ == "Rectangle":
+            keys = ["id", "width", "height", "x", "y"]
+        else:
+            keys = ["id", "size", "x", "y"]
+        try:
+            with open(filename, "r", newline="") as csvfile:
+                reader = csv.reader(csvfile)
+                list_dicts = [
+                    {k: int(v) for k, v in zip(keys, row)}
+                    for row in reader
+                ]
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
