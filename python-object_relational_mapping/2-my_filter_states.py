@@ -15,11 +15,12 @@ if __name__ == "__main__":
         host="localhost", port=3306, user=username,
         passwd=password, db=db_name, charset="utf8")
     cur = db.cursor()
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(
-        state_name)
+    query = "SELECT * FROM states WHERE BINARY name = '{}' " \
+            "ORDER BY id ASC".format(state_name)
     cur.execute(query)
     rows = cur.fetchall()
     for row in rows:
         print(row)
     cur.close()
     db.close()
+    
