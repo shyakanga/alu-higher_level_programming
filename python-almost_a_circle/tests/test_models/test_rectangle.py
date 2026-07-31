@@ -92,6 +92,14 @@ class TestRectangle_validation(unittest.TestCase):
         r = Rectangle(10, 2, 0, 0)
         self.assertEqual(r.x, 0)
 
+    def test_width_negative_only(self):
+        with self.assertRaises(ValueError):
+            Rectangle(-1, 2)
+
+    def test_x_str(self):
+        with self.assertRaises(TypeError):
+            Rectangle(1, 2, "3")
+
 
 class TestRectangle_area(unittest.TestCase):
     """Unit tests for testing the area method of Rectangle."""
