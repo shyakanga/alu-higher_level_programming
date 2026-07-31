@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines unit tests for models/square.py."""
+import os
 import io
 import sys
 import unittest
@@ -60,6 +61,31 @@ class TestSquare_validation(unittest.TestCase):
     def test_y_negative(self):
         with self.assertRaises(ValueError):
             Square(5, 0, -1)
+
+    def test_x_str(self):
+        with self.assertRaises(TypeError):
+            Square(1, "2")
+
+    def test_y_str(self):
+        with self.assertRaises(TypeError):
+            Square(1, 2, "3")
+
+class TestSquare_save_to_file(unittest.TestCase):
+    """Unit tests for testing save_to_file method of Square class."""
+
+    def tearDown(self):
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+    def test_save_to_file_none(self):
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_save_to_file_empty_list(self):
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
 
 
 class TestSquare_size(unittest.TestCase):
