@@ -46,4 +46,4 @@ Invalid element types inside matrix:
     >>> lazy_matrix_mul([[1, "hello"]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
         ...
-    TypeError: invalid data type for iterator
+    TypeError: invalid data type for einsum
