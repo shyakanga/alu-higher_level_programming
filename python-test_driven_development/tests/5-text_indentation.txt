@@ -1,21 +1,47 @@
-The ``5-text_indentation`` module
-=================================
+==============================
+How to Use 5-text_indentation.py
+==============================
 
-Using ``text_indentation``
---------------------------
+This module defines the function ``text_indentation(text)``.
 
-Importing the function from module:
+Importing the function:
     >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-Testing text indentation:
-    >>> text_indentation("Hello. World?")
+Standard text formatting:
+    >>> text_indentation("Hello. World? Python: Rules")
     Hello.
     <BLANKLINE>
     World?
     <BLANKLINE>
+    Python:
+    <BLANKLINE>
+    Rules
 
-Testing errors:
-    >>> text_indentation(123)
+Handling multiple spaces around sentence boundaries:
+    >>> text_indentation("   Holberton.    School?   ")
+    Holberton.
+    <BLANKLINE>
+    School?
+    <BLANKLINE>
+
+TypeError when text is not a string:
+    >>> text_indentation(12)
     Traceback (most recent call last):
         ...
     TypeError: text must be a string
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+    >>> text_indentation(["Lorem", "Ipsum"])
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Missing required argument:
+    >>> text_indentation()
+    Traceback (most recent call last):
+        ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
